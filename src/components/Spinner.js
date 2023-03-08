@@ -32,7 +32,7 @@ const MyComponent = styled.div`
 export class Spinner extends Component {
     render() {
         return (
-            <MyComponent>
+            <MyComponent className='mt-3'>
                 <div className="lds-dual-ring"></div>
             </MyComponent>
         )

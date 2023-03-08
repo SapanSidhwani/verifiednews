@@ -15,7 +15,7 @@ export class Navbar extends Component {
   render() {
     return (
     
-    <nav className="navbar navbar-expand-lg bg-dark bg-opacity-25">
+        <nav className="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
         <div className="container-fluid">
             <Link className="navbar-brand" to="/">verifiednews.com</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

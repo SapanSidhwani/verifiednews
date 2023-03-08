@@ -23,7 +23,7 @@ function RootLayout(props) {
 }
 export default class App extends Component {
 
-  api_key ="e473764d45744824ba8f520f8baff2fa";
+  api_key ="3620ddc54ad84cdbbad767e52bb27357";
   country = "us";
   pageSize = 12;
   router = createBrowserRouter(
@@ -66,47 +66,3 @@ export default class App extends Component {
     )
   }
 }
-
-
-  // router = createBrowserRouter([
-
-  //   {
-  //     path: "/",
-  //     element: <RootLayout/>,
-  //     children: [
-
-  //       {
-  //         path: '/',
-  //         element: <News api_key={this.api_key} />
-  //       },
-  //       {
-  //         path: "/business",
-  //         element: <News pageSize={this.pageSize} category="business" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/entertainment",
-  //         element: <News pageSize={this.pageSize} category="entertainment" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/general",
-  //         element: <News pageSize={this.pageSize} category="general" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/health",
-  //         element: <News pageSize={this.pageSize} category="health" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/science",
-  //         element: <News pageSize={this.pageSize} category="science" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/sports",
-  //         element: <News pageSize={this.pageSize} category="sports" api_key={this.api_key} country={this.country} />
-  //       },
-  //       {
-  //         path: "/technology",
-  //         element: <News pageSize={this.pageSize} category="technology" api_key={this.api_key} country={this.country} />
-  //       }
-  //     ]
-  //   }
-  // ]);
