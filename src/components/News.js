@@ -58,7 +58,7 @@ export class News extends Component {
         this.LoadingBar = false;
     }
     fetchMoreData = async () => {
-        this.setState({ page: this.state.page + 1, loading: true });
+        this.setState({ page: this.state.page + 1 });
 
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
 
@@ -68,7 +68,6 @@ export class News extends Component {
         this.setState({
             page: this.state.page,
             articles: this.state.articles.concat(parsedData.articles),
-            loading: false
         });
     };
     render() {
@@ -102,7 +101,7 @@ export class News extends Component {
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
                     hasMore={this.state.articles.length !== this.state.totalResults}
-                    loader={this.state.loading && <h1 className='text-center'><Spinner /></h1>} >
+                    loader={<h1 className='text-center'><Spinner /></h1>} >
                 </InfiniteScroll>
             </>
             
