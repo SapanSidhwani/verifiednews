@@ -25,7 +25,7 @@ export class News extends Component {
         this.state = {
             articles: [],
             loading: false,
-            page: 1,
+            page: 0,
             totalResults: 0
         };
         document.title = `${this.capitalize(this.props.category)} - VerifiedNews`;
@@ -38,7 +38,7 @@ export class News extends Component {
 
         
         if (this.LoadingBar) this.props.setProgress(10);
-        this.setState({ page: this.state.page + 1, loading: true });
+        this.setState({  loading: true });
 
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
 
@@ -68,7 +68,6 @@ export class News extends Component {
         this.setState({
             page: this.state.page,
             articles: this.state.articles.concat(parsedData.articles),
-            totalResults: parsedData.totalResults,
             loading: false
         });
     };
@@ -80,7 +79,7 @@ export class News extends Component {
                         <h2>Top {this.capitalize(this.props.category)} Headlines</h2>
                         {this.state.loading && <Spinner />}
                     </div>
-                    <div className="row g-3 justify-content-evenly my-2 row-cols-xxl-auto">
+                    <div className="row g-4 justify-content-evenly my-2 row-cols-xxl-auto">
                         {
                             // eslint-disable-next-line
                             this.state.articles.map((element) => {
@@ -90,7 +89,7 @@ export class News extends Component {
                                             description={element.description ? element.description : ""}
                                             imageUrl={element.urlToImage ? element.urlToImage : ""}
                                             newsUrl={element.url ? element.url : ""} 
-                                            author={element.author ? element.author : "unknown sources"} 
+                                            author={element.author ? element.author : "unknown"} 
                                             date={element.publishedAt ? element.publishedAt : ""}
                                             source={element.source.name}/>
                                     </div>
