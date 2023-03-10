@@ -1,13 +1,13 @@
 // rce
-import React, { Component } from 'react';
+import React from 'react';
 import defaultImg from './img/default-img.png';
 function imgerror(event) {
     event.currentTarget.src =defaultImg;
 }
-export class NewsItem extends Component {
+const NewsItem = (props) => {
     
-  render(props) {
-      let { title, description, imageUrl, newsUrl,author, date, source } = this.props;
+
+    let { title, description, imageUrl, newsUrl,author, date, source } = props;
     return (
         <div className="card h-100 mx-auto" style={{width: "18rem"}}>
             <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left: '50%', zIndex: '1'}}>{source}</span>
@@ -27,7 +27,7 @@ export class NewsItem extends Component {
             </div>
         </div>
     )
-  }
+
 }
 
 export default NewsItem

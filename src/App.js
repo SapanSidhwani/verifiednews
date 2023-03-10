@@ -11,68 +11,63 @@ import {
 import LoadingBar from 'react-top-loading-bar';
 
 // rcc -start
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-function RootLayout(props) {
+function RootLayout(){
 
   return (
     <>
       <Navbar />
       <Outlet />
     </>
-  )
+  );
 }
-export default class App extends Component {
+function App(){
 
-  api_key = process.env.REACT_APP_NEWS_API_KEY;
-  country = "us";
-  pageSize = 12;
+  const api_key = process.env.REACT_APP_NEWS_API_KEY;
+  const country = "in";
+  const pageSize = 30;
 
-  state = {
-    progress: 0
-  }
-  setProgress = (progress) => {
-    this.setState({progress})
-  }
+  const [progress, setProgress] = useState(0);
 
-  router = createBrowserRouter(
+  const router = createBrowserRouter(
       createRoutesFromElements(
-        <Route path='/' element={<RootLayout/>}>
+        <Route path='/' element={<RootLayout />}>
 
           <Route index path="/"
-                 element={<News setProgress={this.setProgress} key="general" pageSize={this.pageSize} category="general" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="general1" setProgress={setProgress} pageSize={pageSize} category="general" api_key={api_key} country={country} />} />
 
           <Route exact path="/business" 
-                 element={<News setProgress={this.setProgress} key="business" pageSize={this.pageSize} category="business" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="business" setProgress={setProgress} pageSize={pageSize} category="business" api_key={api_key} country={country} />} />
     
           <Route exact path="/entertainment" 
-                 element={<News setProgress={this.setProgress} key="entertainment" pageSize={this.pageSize} category="entertainment" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="entertainment" setProgress={setProgress} pageSize={pageSize} category="entertainment" api_key={api_key} country={country} />} />
     
           <Route exact path="/general" 
-                 element={<News setProgress={this.setProgress} key="general" pageSize={this.pageSize} category="general" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="general" setProgress={setProgress} pageSize={pageSize} category="general" api_key={api_key} country={country} />} />
     
           <Route exact path="/health" 
-                 element={<News setProgress={this.setProgress} key="health" pageSize={this.pageSize} category="health" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="health" setProgress={setProgress} pageSize={pageSize} category="health" api_key={api_key} country={country} />} />
     
           <Route exact path="/science" 
-                 element={<News setProgress={this.setProgress} key="science" pageSize={this.pageSize} category="science" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="science" setProgress={setProgress} pageSize={pageSize} category="science" api_key={api_key} country={country} />} />
     
           <Route exact path="/sports" 
-                 element={<News setProgress={this.setProgress} key="sports" pageSize={this.pageSize} category="sports" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="sports" setProgress={setProgress} pageSize={pageSize} category="sports" api_key={api_key} country={country} />} />
     
           <Route exact path="/technology" 
-                 element={<News setProgress={this.setProgress} key="technology" pageSize={this.pageSize} category="technology" api_key={this.api_key} country={this.country} />} />
+                 element={<News key="technology" setProgress={setProgress} pageSize={pageSize} category="technology" api_key={api_key} country={country} />} />
     
         </Route>
       )
     );
-
-  render(props) {
-    return (
-      <>
-        <LoadingBar height={3} color='#f11946' progress={this.state.progress}/>
-        <RouterProvider router={this.router} />
-      </>
-    )
-  }
+  return (
+    <>
+      <LoadingBar height={3} color='#f11946' progress={progress}/>
+      <RouterProvider router={router} />
+      <Outlet/>
+    </>
+  );
 }
+
+export default App

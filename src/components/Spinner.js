@@ -1,5 +1,5 @@
 // rce
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const MyComponent = styled.div`
@@ -26,17 +26,14 @@ const MyComponent = styled.div`
   100% {
     transform: rotate(360deg);
   }
-}
+}`;
+const Spinner = () => {
 
-`;
-export class Spinner extends Component {
-    render() {
-        return (
-            <MyComponent className='mt-3'>
-                <div className="lds-dual-ring"></div>
-            </MyComponent>
-        )
-    }
+  return (
+    <MyComponent className='mt-3'>
+      <div className="lds-dual-ring"></div>
+    </MyComponent>
+  );
 }
 
 export default Spinner
