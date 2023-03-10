@@ -1,4 +1,4 @@
-// rce${this.props.api_key}
+// rce
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
@@ -25,18 +25,17 @@ export class News extends Component {
         this.state = {
             articles: [],
             loading: false,
-            page: 0,
+            page: 1,
             totalResults: 0
         };
         document.title = `${this.capitalize(this.props.category)} - VerifiedNews`;
     };
-    capitalize = (str) =>  {
+    capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     LoadingBar = true;
     async componentDidMount() {
 
-        
         if (this.LoadingBar) this.props.setProgress(10);
         this.setState({  loading: true });
 
@@ -49,7 +48,6 @@ export class News extends Component {
         if(this.LoadingBar) this.props.setProgress(70);
 
         this.setState({
-            page: this.state.page + 1,
             articles: parsedData.articles,
             totalResults: parsedData.totalResults,
             loading: false
@@ -58,16 +56,15 @@ export class News extends Component {
         this.LoadingBar = false;
     }
     fetchMoreData = async () => {
-        this.setState({ page: this.state.page + 1 });
 
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
 
         let data = await fetch(url);
         let parsedData = await data.json();
 
         this.setState({
-            page: this.state.page,
-            articles: this.state.articles.concat(parsedData.articles),
+            page: this.state.page + 1,
+            articles: this.state.articles.concat(parsedData.articles)
         });
     };
     render() {
@@ -82,8 +79,7 @@ export class News extends Component {
                         {
                             // eslint-disable-next-line
                             this.state.articles.map((element) => {
-                                return (
-                                    <div className="col-auto" key={element.url ? element.url : ""}>
+                                return <div className="col-auto" key={element.url ? element.url : ""}>
                                         <NewsItem title={element.title ? element.title : ""}
                                             description={element.description ? element.description : ""}
                                             imageUrl={element.urlToImage ? element.urlToImage : ""}
@@ -92,7 +88,7 @@ export class News extends Component {
                                             date={element.publishedAt ? element.publishedAt : ""}
                                             source={element.source.name}/>
                                     </div>
-                                );
+                                
                             })
                         }
                     </div>
@@ -110,4 +106,3 @@ export class News extends Component {
 }
 
 export default News
-
